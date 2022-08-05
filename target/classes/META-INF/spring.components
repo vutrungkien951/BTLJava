@@ -1,0 +1,2 @@
+com.vtk.configs.WebAppContextConfig=org.springframework.stereotype.Component
+com.vtk.controllers.IndexController=org.springframework.stereotype.Component

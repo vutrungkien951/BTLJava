@@ -1,0 +1,4 @@
+com\vtk\configs\WebAppContextConfig.class
+META-INF\spring.components
+com\vtk\controllers\IndexController.class
+com\vtk\configs\DispatcherServletInit.class
