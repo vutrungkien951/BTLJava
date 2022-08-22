@@ -6,12 +6,12 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-14T10:16:35")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-22T08:40:23")
 @StaticMetamodel(Category.class)
 public class Category_ { 
 
+    public static volatile SingularAttribute<Category, String> image;
     public static volatile SetAttribute<Category, Food> foodSet;
-    public static volatile SingularAttribute<Category, String> description;
     public static volatile SingularAttribute<Category, Integer> id;
     public static volatile SingularAttribute<Category, String> categoryName;
 

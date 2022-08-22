@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -71,12 +69,9 @@ public class Store implements Serializable {
     private Set<Subcribers> subcribersSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
     private Set<CommentsStore> commentsStoreSet;
-    @JoinColumn(name = "menu_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Menu menuId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
-    private Set<Food> foodSet;
     @OneToMany(mappedBy = "storeId")
+    private Set<StoreMenu> storeMenuSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "storeId")
     private Set<StoreOwner> storeOwnerSet;
 
     public Store() {
@@ -151,21 +146,13 @@ public class Store implements Serializable {
         this.commentsStoreSet = commentsStoreSet;
     }
 
-    public Menu getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(Menu menuId) {
-        this.menuId = menuId;
-    }
-
     @XmlTransient
-    public Set<Food> getFoodSet() {
-        return foodSet;
+    public Set<StoreMenu> getStoreMenuSet() {
+        return storeMenuSet;
     }
 
-    public void setFoodSet(Set<Food> foodSet) {
-        this.foodSet = foodSet;
+    public void setStoreMenuSet(Set<StoreMenu> storeMenuSet) {
+        this.storeMenuSet = storeMenuSet;
     }
 
     @XmlTransient

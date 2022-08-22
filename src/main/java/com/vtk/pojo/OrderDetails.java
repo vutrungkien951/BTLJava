@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,7 +30,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "OrderDetails.findAll", query = "SELECT o FROM OrderDetails o"),
     @NamedQuery(name = "OrderDetails.findById", query = "SELECT o FROM OrderDetails o WHERE o.id = :id"),
     @NamedQuery(name = "OrderDetails.findByUnitPrice", query = "SELECT o FROM OrderDetails o WHERE o.unitPrice = :unitPrice"),
-    @NamedQuery(name = "OrderDetails.findByNum", query = "SELECT o FROM OrderDetails o WHERE o.num = :num")})
+    @NamedQuery(name = "OrderDetails.findByNum", query = "SELECT o FROM OrderDetails o WHERE o.num = :num"),
+    @NamedQuery(name = "OrderDetails.findByDiscount", query = "SELECT o FROM OrderDetails o WHERE o.discount = :discount")})
 public class OrderDetails implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,12 +40,16 @@ public class OrderDetails implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "unit_price")
-    private String unitPrice;
-    @Size(max = 45)
+    private int unitPrice;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "num")
-    private String num;
+    private int num;
+    @Column(name = "discount")
+    private Integer discount;
     @JoinColumn(name = "food_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Food foodId;
@@ -59,6 +64,12 @@ public class OrderDetails implements Serializable {
         this.id = id;
     }
 
+    public OrderDetails(Integer id, int unitPrice, int num) {
+        this.id = id;
+        this.unitPrice = unitPrice;
+        this.num = num;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -67,20 +78,28 @@ public class OrderDetails implements Serializable {
         this.id = id;
     }
 
-    public String getUnitPrice() {
+    public int getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(String unitPrice) {
+    public void setUnitPrice(int unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public String getNum() {
+    public int getNum() {
         return num;
     }
 
-    public void setNum(String num) {
+    public void setNum(int num) {
         this.num = num;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
     }
 
     public Food getFoodId() {

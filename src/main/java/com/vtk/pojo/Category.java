@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
     @NamedQuery(name = "Category.findById", query = "SELECT c FROM Category c WHERE c.id = :id"),
     @NamedQuery(name = "Category.findByCategoryName", query = "SELECT c FROM Category c WHERE c.categoryName = :categoryName"),
-    @NamedQuery(name = "Category.findByDescription", query = "SELECT c FROM Category c WHERE c.description = :description")})
+    @NamedQuery(name = "Category.findByImage", query = "SELECT c FROM Category c WHERE c.image = :image")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,9 +47,9 @@ public class Category implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "category_name")
     private String categoryName;
-    @Size(max = 255)
-    @Column(name = "description")
-    private String description;
+    @Size(max = 300)
+    @Column(name = "image")
+    private String image;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private Set<Food> foodSet;
 
@@ -81,12 +81,12 @@ public class Category implements Serializable {
         this.categoryName = categoryName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImage() {
+        return image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @XmlTransient

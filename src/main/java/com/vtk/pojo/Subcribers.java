@@ -48,7 +48,7 @@ public class Subcribers implements Serializable {
     private Store storeId;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    private UserAccount userId;
+    private User userId;
 
     public Subcribers() {
     }
@@ -81,11 +81,11 @@ public class Subcribers implements Serializable {
         this.storeId = storeId;
     }
 
-    public UserAccount getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(UserAccount userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 

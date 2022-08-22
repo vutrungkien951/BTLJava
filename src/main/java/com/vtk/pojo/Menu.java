@@ -50,8 +50,8 @@ public class Menu implements Serializable {
     @Size(max = 45)
     @Column(name = "discription")
     private String discription;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menuId")
-    private Set<Store> storeSet;
+    @OneToMany(mappedBy = "menuId")
+    private Set<StoreMenu> storeMenuSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "menuId")
     private Set<Food> foodSet;
 
@@ -92,12 +92,12 @@ public class Menu implements Serializable {
     }
 
     @XmlTransient
-    public Set<Store> getStoreSet() {
-        return storeSet;
+    public Set<StoreMenu> getStoreMenuSet() {
+        return storeMenuSet;
     }
 
-    public void setStoreSet(Set<Store> storeSet) {
-        this.storeSet = storeSet;
+    public void setStoreMenuSet(Set<StoreMenu> storeMenuSet) {
+        this.storeMenuSet = storeMenuSet;
     }
 
     @XmlTransient

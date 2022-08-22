@@ -35,7 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "SaleOrder.findAll", query = "SELECT s FROM SaleOrder s"),
     @NamedQuery(name = "SaleOrder.findById", query = "SELECT s FROM SaleOrder s WHERE s.id = :id"),
-    @NamedQuery(name = "SaleOrder.findByAmount", query = "SELECT s FROM SaleOrder s WHERE s.amount = :amount"),
     @NamedQuery(name = "SaleOrder.findByCreatedDate", query = "SELECT s FROM SaleOrder s WHERE s.createdDate = :createdDate")})
 public class SaleOrder implements Serializable {
 
@@ -45,8 +44,6 @@ public class SaleOrder implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "amount")
-    private Integer amount;
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
@@ -56,7 +53,7 @@ public class SaleOrder implements Serializable {
     private Set<Revenue> revenueSet;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    private UserAccount userId;
+    private User userId;
 
     public SaleOrder() {
     }
@@ -71,14 +68,6 @@ public class SaleOrder implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
     }
 
     public Date getCreatedDate() {
@@ -107,11 +96,11 @@ public class SaleOrder implements Serializable {
         this.revenueSet = revenueSet;
     }
 
-    public UserAccount getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(UserAccount userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 

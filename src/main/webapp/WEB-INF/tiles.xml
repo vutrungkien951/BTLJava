@@ -10,7 +10,15 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
     </definition>
     <definition name="index" extends="baseLayout">
-        <put-attribute name="title" value="" />
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
+    </definition>
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/login.jsp" />
+    </definition>
+    <definition name="signup" extends="baseLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/signup.jsp" />
+    </definition>
+    <definition name="categories" extends="baseLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/categories.jsp" />
     </definition>
 </tiles-definitions>

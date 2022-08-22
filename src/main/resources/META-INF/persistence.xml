@@ -15,6 +15,8 @@
     <class>com.vtk.pojo.Food</class>
     <class>com.vtk.pojo.StoreOwner</class>
     <class>com.vtk.pojo.Category</class>
+    <class>com.vtk.pojo.StoreMenu</class>
+    <class>com.vtk.pojo.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/food_db?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

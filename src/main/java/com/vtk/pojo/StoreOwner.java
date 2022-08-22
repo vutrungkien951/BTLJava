@@ -27,35 +27,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "StoreOwner.findAll", query = "SELECT s FROM StoreOwner s"),
-    @NamedQuery(name = "StoreOwner.findByIdstoreOwner", query = "SELECT s FROM StoreOwner s WHERE s.idstoreOwner = :idstoreOwner")})
+    @NamedQuery(name = "StoreOwner.findById", query = "SELECT s FROM StoreOwner s WHERE s.id = :id")})
 public class StoreOwner implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idstore_owner")
-    private Integer idstoreOwner;
+    @Column(name = "id")
+    private Integer id;
     @JoinColumn(name = "store_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Store storeId;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @ManyToOne
-    private UserAccount userId;
+    @ManyToOne(optional = false)
+    private User userId;
 
     public StoreOwner() {
     }
 
-    public StoreOwner(Integer idstoreOwner) {
-        this.idstoreOwner = idstoreOwner;
+    public StoreOwner(Integer id) {
+        this.id = id;
     }
 
-    public Integer getIdstoreOwner() {
-        return idstoreOwner;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdstoreOwner(Integer idstoreOwner) {
-        this.idstoreOwner = idstoreOwner;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Store getStoreId() {
@@ -66,18 +66,18 @@ public class StoreOwner implements Serializable {
         this.storeId = storeId;
     }
 
-    public UserAccount getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(UserAccount userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idstoreOwner != null ? idstoreOwner.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -88,7 +88,7 @@ public class StoreOwner implements Serializable {
             return false;
         }
         StoreOwner other = (StoreOwner) object;
-        if ((this.idstoreOwner == null && other.idstoreOwner != null) || (this.idstoreOwner != null && !this.idstoreOwner.equals(other.idstoreOwner))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -96,7 +96,7 @@ public class StoreOwner implements Serializable {
 
     @Override
     public String toString() {
-        return "com.vtk.pojo.StoreOwner[ idstoreOwner=" + idstoreOwner + " ]";
+        return "com.vtk.pojo.StoreOwner[ id=" + id + " ]";
     }
     
 }

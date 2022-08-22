@@ -46,7 +46,7 @@ public class CommentsFood implements Serializable {
     private Food foodId;
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     @ManyToOne(optional = false)
-    private UserAccount userId;
+    private User userId;
 
     public CommentsFood() {
     }
@@ -79,11 +79,11 @@ public class CommentsFood implements Serializable {
         this.foodId = foodId;
     }
 
-    public UserAccount getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(UserAccount userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 

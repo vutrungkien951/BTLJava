@@ -70,9 +70,6 @@ public class Food implements Serializable {
     @JoinColumn(name = "menu_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Menu menuId;
-    @JoinColumn(name = "store_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Store storeId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "foodId")
     private Set<CommentsFood> commentsFoodSet;
 
@@ -159,14 +156,6 @@ public class Food implements Serializable {
 
     public void setMenuId(Menu menuId) {
         this.menuId = menuId;
-    }
-
-    public Store getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Store storeId) {
-        this.storeId = storeId;
     }
 
     @XmlTransient
