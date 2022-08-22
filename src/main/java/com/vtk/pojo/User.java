@@ -57,17 +57,17 @@ public class User implements Serializable {
     @Column(name = "user_id")
     private Integer userId;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "user_role")
     private String userRole;
     @Size(max = 45, message = "{user.email.sizeMsg}")
     @Column(name = "user_email")
+    @NotNull(message = "{user.email.notNullMsg}")
     @UserEmail(message = "{user.email.userEmailMsg}")
     private String userEmail;
     @Basic(optional = false)
     @NotNull(message = "{user.password.notNullMsg}")
-    @Size(min = 1, max = 45, message = "{user.password.sizeMsg}")
+    @Size(min = 1, max = 200, message = "{user.password.sizeMsg}")
     @Column(name = "user_password")
     private String userPassword;
     @Column(name = "birth_date")

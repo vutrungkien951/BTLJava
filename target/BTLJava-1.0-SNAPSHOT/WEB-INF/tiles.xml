@@ -21,4 +21,7 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="categories" extends="baseLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/categories.jsp" />
     </definition>
+    <definition name="category_product" extends="baseLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/category_product.jsp" />
+    </definition>
 </tiles-definitions>

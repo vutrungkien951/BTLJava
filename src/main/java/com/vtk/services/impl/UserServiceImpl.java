@@ -23,22 +23,21 @@ import org.springframework.stereotype.Service;
  * @author kien
  */
 @Service
-public class UserServiceImpl implements UserService{
-    
-    @Autowired 
+public class UserServiceImpl implements UserService {
+
+    @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void addUser(User user) {
-        
+
         user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
-        if("STORE_OWNER".equals(user.getUserRole())){
+        if ("STORE_OWNER".equals(user.getUserRole())) {
             user.setActive(Boolean.FALSE);
-        }
-        else{
+        } else {
             user.setActive(Boolean.TRUE);
         }
         this.userRepository.addUser(user);
@@ -52,20 +51,25 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         List<User> users = this.userRepository.getUsers(userEmail);
-        if(users.isEmpty()){
+        if (users.isEmpty()) {
             throw new UsernameNotFoundException("Khong ton tai!");
         }
         User u = users.get(0);
-        Set<GrantedAuthority> authorites = new HashSet<>();
-        authorites.add(new SimpleGrantedAuthority(u.getUserRole()));
-        
-        return new org.springframework.security.core.userdetails.User(u.getUserEmail(),
-                u.getUserPassword(), authorites);
+        if (u.getActive() == true) {
+            Set<GrantedAuthority> authorites = new HashSet<>();
+            authorites.add(new SimpleGrantedAuthority(u.getUserRole()));
+
+            return new org.springframework.security.core.userdetails.User(u.getUserEmail(),
+                    u.getUserPassword(), authorites);
+        }
+        else{
+            return null;
+        }
     }
 
     @Override
     public User getUserByUserEmail(String userEmail) {
         return this.userRepository.getUsers(userEmail).get(0);
     }
-    
+
 }

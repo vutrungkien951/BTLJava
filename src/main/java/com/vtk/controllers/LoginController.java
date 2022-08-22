@@ -58,7 +58,7 @@ public class LoginController {
                 if (object instanceof FieldError) {
                     FieldError fieldError = (FieldError) object;
 
-                    System.out.println(fieldError.getCode());
+                    System.out.println(fieldError.getDefaultMessage() + fieldError.getCode());
                 }
 
                 if (object instanceof ObjectError) {

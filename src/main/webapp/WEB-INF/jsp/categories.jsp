@@ -8,7 +8,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title><fmt:message key="label.category"/></title>
-<div class="row">
+<div class="row container">
     <h2 class="text-center"><fmt:message key="categories.all" /></h2>
     <div class="col-lg-3">
         <ul class="list-group">
