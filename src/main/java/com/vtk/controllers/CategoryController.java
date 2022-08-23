@@ -6,6 +6,7 @@ package com.vtk.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -17,5 +18,12 @@ public class CategoryController {
     @GetMapping("/categories")
     public String categories(){
         return "categories";
+    }
+    
+    @GetMapping("/categories/${categoryId}/products")
+    public String categoryProducts(@PathVariable (value = "categoryId") int categoryId){
+        
+        
+        return "category_product";
     }
 }

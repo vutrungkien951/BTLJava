@@ -36,7 +36,8 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan(basePackages = {
     "com.vtk.controllers",
     "com.vtk.repository",
-    "com.vtk.services"
+    "com.vtk.services",
+    "com.vtk.handlers"
 })
 public class WebAppContextConfig implements WebMvcConfigurer{
     

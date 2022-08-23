@@ -76,7 +76,7 @@ public class LoginController {
             user.setUserImage(results.get("secure_url").toString());
             this.userService.addUser(user);
             return "redirect:/";
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }
 

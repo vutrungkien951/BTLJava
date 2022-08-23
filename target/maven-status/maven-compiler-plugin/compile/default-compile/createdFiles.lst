@@ -22,6 +22,7 @@ com\vtk\controllers\CategoryController.class
 com\vtk\pojo\Subcribers_.class
 com\vtk\repository\UserRepository.class
 com\vtk\configs\TilesConfig.class
+com\vtk\controllers\AdminController.class
 com\vtk\controllers\IndexController.class
 com\vtk\validator\UserEmailValidator.class
 com\vtk\configs\WebSecurityConfig.class
@@ -40,6 +41,7 @@ com\vtk\pojo\Category.class
 com\vtk\pojo\StoreMenu.class
 com\vtk\repository\CategoryRepository.class
 com\vtk\configs\SpringSecurityInitializer.class
+com\vtk\handlers\LoginSuccessHandler.class
 com\vtk\pojo\Store_.class
 com\vtk\repository\impl\CategoryRepositoryImpl.class
 com\vtk\pojo\Revenue.class

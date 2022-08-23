@@ -15,6 +15,7 @@
         <!-- Core theme JS-->
         <script src="<c:url value="/js/scripts.js" />"></script>
         <!--Icon-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.2/css/fontawesome.min.css" integrity="sha384-X8QTME3FCg1DLb58++lPvsjbQoCT9bp3MsUU3grbIny/3ZwUJkRNO8NPW6zqzuW9" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="<c:url value="/images/Loan.ico" />" />
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
         <link rel="stylesheet" href="<c:url value="/css/index.css" />">

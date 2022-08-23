@@ -4,6 +4,7 @@
  */
 package com.vtk.configs;
 
+import com.vtk.handlers.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
@@ -21,11 +23,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackages = { "com.vtk"})
+@EnableTransactionManagement
+@ComponentScan(basePackages = {
+    "com.vtk.controllers",
+    "com.vtk.repository",
+    "com.vtk.services",
+    "com.vtk.handlers",
+    "com.vtk.configs"
+})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService myUserDetailsService;
+
+    @Autowired
+    private LoginSuccessHandler loginSuccessHandler;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -34,26 +46,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user").password(passwordEncoder().encode("password")).roles("USER")
-//                .and()
-//                .withUser("admin").password(passwordEncoder().encode("password")).roles("ADMIN");
         auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
+        http.formLogin().usernameParameter("username").passwordParameter("password");
+        http.formLogin().successHandler(loginSuccessHandler);
+        
+        
+        
         http.authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/signup").permitAll()
-                //                .antMatchers("/").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**").permitAll()
                 .and()
                 .formLogin()
+                .successHandler(loginSuccessHandler)
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()
@@ -62,6 +72,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()
+                .and()
+                .rememberMe().key("uniqueAndSecret")
+                .tokenValiditySeconds(86400)
                 .and()
                 .csrf()
                 .disable();

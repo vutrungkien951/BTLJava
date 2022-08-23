@@ -58,8 +58,8 @@
         <div class="mb-3 mt-3">
             <label for="userRole" class="form-label"><fmt:message key="signup.userRole" /></label>
             <form:select path="userRole" id="userRole">
-                <option value="USER"><fmt:message key="signup.userRole.user" /></option>
-                <option value="STORE_OWNER"><fmt:message key="signup.userRole.storeOwner" /></option>
+                <option value="ROLE_USER"><fmt:message key="signup.userRole.user" /></option>
+                <option value="ROLE_STORE_OWNER"><fmt:message key="signup.userRole.storeOwner" /></option>
             </form:select>
         </div>
         <div class="mb-3 mt-3">

@@ -24,4 +24,16 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
     <definition name="category_product" extends="baseLayout">
         <put-attribute name="content" value="/WEB-INF/jsp/category_product.jsp" />
     </definition>
+    <definition name="adminBaseLayout" template="/WEB-INF/layout/base.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/layout/headerAdmin.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
+    </definition>
+    <definition name="admin" extends="adminBaseLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/adminIndex.jsp" />
+    </definition>
+    <definition name="adminUser" extends="adminBaseLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/adminUser.jsp" />
+    </definition>
 </tiles-definitions>

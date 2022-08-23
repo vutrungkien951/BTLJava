@@ -15,6 +15,9 @@
         <link rel="stylesheet" href="<c:url value="/css/index.css" />"/>
     </head>
     <body>
+        <c:forEach items="${authorities}" var="a">
+            <h1>${a}</h1>
+        </c:forEach>
         <div class="container px-4 px-lg-5 my-10">
             <img src="<c:url value="/images/banner.png"/>" alt="Banner Loan" width="100%" height="100%">
             <div class="text-center text-black">
