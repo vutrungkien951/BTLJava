@@ -15,4 +15,5 @@ public interface UserRepository {
     void addUser(User user);
     boolean checkUserEmail(String userEmail);
     List<User> getUsers(String userEmail);
+    List<User> getStoreOwner();
 }

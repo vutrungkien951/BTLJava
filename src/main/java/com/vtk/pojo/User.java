@@ -4,6 +4,7 @@
  */
 package com.vtk.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vtk.validator.UserEmail;
 import java.io.Serializable;
 import java.util.Date;
@@ -89,14 +90,19 @@ public class User implements Serializable {
     @Column(name = "active")
     private Boolean active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<Subcribers> subcribersSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<CommentsStore> commentsStoreSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<StoreOwner> storeOwnerSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<SaleOrder> saleOrderSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
     private Set<CommentsFood> commentsFoodSet;
     
     @Transient

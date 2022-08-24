@@ -30,6 +30,7 @@ com\vtk\pojo\CommentsStore_.class
 com\vtk\pojo\Food_.class
 com\vtk\pojo\StoreOwner.class
 com\vtk\services\impl\UserServiceImpl.class
+com\vtk\handlers\LogoutSuccessHandler.class
 com\vtk\pojo\CommentsFood.class
 com\vtk\pojo\Subcribers.class
 com\vtk\pojo\OrderDetails_.class
@@ -40,6 +41,7 @@ com\vtk\pojo\CommentsStore.class
 com\vtk\pojo\Category.class
 com\vtk\pojo\StoreMenu.class
 com\vtk\repository\CategoryRepository.class
+com\vtk\controllers\UserAPIController.class
 com\vtk\configs\SpringSecurityInitializer.class
 com\vtk\handlers\LoginSuccessHandler.class
 com\vtk\pojo\Store_.class

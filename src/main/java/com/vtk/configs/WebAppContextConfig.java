@@ -25,6 +25,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  *
@@ -32,6 +33,7 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
+//@EnableSwagger2
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
     "com.vtk.controllers",

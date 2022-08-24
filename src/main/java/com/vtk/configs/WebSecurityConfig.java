@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -38,6 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoginSuccessHandler loginSuccessHandler;
+    
+    @Autowired
+    private LogoutSuccessHandler logoutSucessHandler;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -59,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").permitAll()
+                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin()
                 .successHandler(loginSuccessHandler)
@@ -68,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login?logout=true")
+                .logoutSuccessHandler(logoutSucessHandler)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .permitAll()

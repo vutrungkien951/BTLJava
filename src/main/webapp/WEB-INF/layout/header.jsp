@@ -47,7 +47,12 @@
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_STORE_OWNER')">
                     <li class="nav-item" >
-                        <a class="nav-link text-secondary" href="<c:url value="/admin/products" />">Quan ly san pham</a>
+                        <a class="nav-link text-secondary" href="<c:url value="/store/" />">Quan ly san pham</a>
+                    </li>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li class="nav-item" >
+                        <a class="nav-link text-secondary" href="<c:url value="/admin/" />">ADMIN PAGE</a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="!isAuthenticated()">

@@ -70,5 +70,25 @@ public class UserRepositoryImpl implements UserRepository{
         
         return users;
     }
+
+    @Override
+    public List<User> getStoreOwner() {
+        List<User> users;
+        Session session = sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> cr = builder.createQuery(User.class);
+
+        Root<User> root = cr.from(User.class);
+
+        CriteriaQuery<User> query = cr.select(root);
+        //select store owner
+        query.where(builder.equal(root.get("userRole").as(String.class), "ROLE_STORE_OWNER"));
+        //select don't active store owner
+        query.where(builder.isFalse(root.get("active")));
+
+        users = session.createQuery(query).getResultList();
+        
+        return users;
+    }
     
 }

@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     public void addUser(User user) {
 
         user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
-        if ("STORE_OWNER".equals(user.getUserRole())) {
+        if ("ROLE_STORE_OWNER".equals(user.getUserRole())) {
             user.setActive(Boolean.FALSE);
         } else {
             user.setActive(Boolean.TRUE);
@@ -70,6 +70,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByUserEmail(String userEmail) {
         return this.userRepository.getUsers(userEmail).get(0);
+    }
+
+    @Override
+    public List<User> getStoreOwner() {
+        return this.userRepository.getStoreOwner();
     }
 
 }

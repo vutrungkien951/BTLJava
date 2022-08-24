@@ -5,6 +5,7 @@
 package com.vtk.services;
 
 import com.vtk.pojo.User;
+import java.util.List;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -15,4 +16,5 @@ public interface UserService extends UserDetailsService{
     void addUser(User user);
     boolean checkUserEmail(String userEmail);
     User getUserByUserEmail(String userEmail);
+    List<User> getStoreOwner();
 }
