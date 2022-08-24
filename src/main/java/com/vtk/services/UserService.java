@@ -17,4 +17,6 @@ public interface UserService extends UserDetailsService{
     boolean checkUserEmail(String userEmail);
     User getUserByUserEmail(String userEmail);
     List<User> getStoreOwner();
+    User getUserById(int id);
+    void saveUser(User user);
 }

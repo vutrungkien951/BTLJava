@@ -25,7 +25,6 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  *
@@ -33,7 +32,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableWebMvc
-//@EnableSwagger2
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
     "com.vtk.controllers",
@@ -41,23 +39,23 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
     "com.vtk.services",
     "com.vtk.handlers"
 })
-public class WebAppContextConfig implements WebMvcConfigurer{
-    
+public class WebAppContextConfig implements WebMvcConfigurer {
+
     @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer conf){
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer conf) {
         conf.enable();
     }
-    
+
     @Bean
-    public InternalResourceViewResolver getInternalResourceViewResolver (){
+    public InternalResourceViewResolver getInternalResourceViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setViewClass(JstlView.class);
         resolver.setPrefix("/WEB-INF/jsp/");
         resolver.setSuffix(".jsp");
-        
+
         return resolver;
     }
-    
+
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource resource = new ResourceBundleMessageSource();
@@ -66,7 +64,7 @@ public class WebAppContextConfig implements WebMvcConfigurer{
 
         return resource;
     }
-    
+
     @Bean
     public LocaleResolver localeResolver() {
         return new CookieLocaleResolver();
@@ -78,14 +76,20 @@ public class WebAppContextConfig implements WebMvcConfigurer{
         localeChangeInterceptor.setParamName("lang");
         registry.addInterceptor(localeChangeInterceptor);
     }
-    
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/resources/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/js/");
         registry.addResourceHandler("/images/**").addResourceLocations("/resources/images/");
+
+        registry.addResourceHandler("swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/");
+
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
-    
+
     @Bean
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
@@ -105,7 +109,7 @@ public class WebAppContextConfig implements WebMvcConfigurer{
 
         return cloudinary;
     }
-    
+
     @Bean
     public Validator validator() {
         LocalValidatorFactoryBean bean
@@ -118,5 +122,5 @@ public class WebAppContextConfig implements WebMvcConfigurer{
     public Validator getValidator() {
         return validator();
     }
-    
+
 }

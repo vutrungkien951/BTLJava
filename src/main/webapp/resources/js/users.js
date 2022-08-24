@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
 
-
 function loadStoreOwnerUser(endpoint) {
     fetch(endpoint).then(function(res){
        return res.json(); 
@@ -19,7 +18,7 @@ function loadStoreOwnerUser(endpoint) {
                 <td>${data[i].userPhoneNumber}</td>
                 <td>
                     <div class="spinner-border text-secondary" style="display:none" id="load${data[i].userId}"></div>
-                    <button class="btn btn-danger" id="btn${data[i].userId}">Accept</button>
+                    <button class="btn btn-danger" id="btn${data[i].userId}" onclick="activeUser('${endpoint + '/updateActive/' + data[i].userId}', ${data[i].userId})">Accept</button>
                 </td>
             </tr>`;
         
@@ -28,4 +27,22 @@ function loadStoreOwnerUser(endpoint) {
         
         }
     });
+}
+
+function activeUser(endpoint, id){
+    let d = document.getElementById("load" + id)
+    d.style.display = "block";
+    
+    
+    fetch(endpoint, {
+        method: "put"
+    }).then(function (res) {
+        if (res.status === 202)
+        {
+            location.reload();
+        }
+
+    }).catch(function (err) {
+        console.error(err)
+    })
 }

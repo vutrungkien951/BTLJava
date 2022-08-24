@@ -22,19 +22,19 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class UserRepositoryImpl implements UserRepository{
-    
+public class UserRepositoryImpl implements UserRepository {
+
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
 
     @Override
     public void addUser(User user) {
-        try{
+        try {
             this.sessionFactory.getObject().getCurrentSession().save(user);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        
+
     }
 
     @Override
@@ -44,8 +44,8 @@ public class UserRepositoryImpl implements UserRepository{
         CriteriaQuery<User> cr = builder.createQuery(User.class);
 
         Root<User> root = cr.from(User.class);
-        CriteriaQuery query = cr.select(root);            
-        query = query.where(builder.equal(root.get("userEmail").as(String.class), 
+        CriteriaQuery query = cr.select(root);
+        query = query.where(builder.equal(root.get("userEmail").as(String.class),
                 userEmail));
 
         //true - doesn't exist userEmail
@@ -63,11 +63,12 @@ public class UserRepositoryImpl implements UserRepository{
         Root<User> root = cr.from(User.class);
 
         CriteriaQuery<User> query = cr.select(root);
-        if (!userEmail.isEmpty())
+        if (!userEmail.isEmpty()) {
             query.where(builder.equal(root.get("userEmail"), userEmail));
+        }
 
         users = session.createQuery(query).getResultList();
-        
+
         return users;
     }
 
@@ -87,8 +88,28 @@ public class UserRepositoryImpl implements UserRepository{
         query.where(builder.isFalse(root.get("active")));
 
         users = session.createQuery(query).getResultList();
-        
+
         return users;
     }
-    
+
+    @Override
+    public User getUserById(int id) {
+        Session session = sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> cr = builder.createQuery(User.class);
+
+        Root<User> root = cr.from(User.class);
+
+        CriteriaQuery<User> query = cr.select(root);
+
+        query.where(builder.equal(root.get("userId"), id));
+
+        return session.createQuery(query).getSingleResult();
+    }
+
+    @Override
+    public void saveUser(User user) {
+        sessionFactory.getObject().getCurrentSession().saveOrUpdate(user);
+    }
+
 }

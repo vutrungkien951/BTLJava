@@ -16,4 +16,6 @@ public interface UserRepository {
     boolean checkUserEmail(String userEmail);
     List<User> getUsers(String userEmail);
     List<User> getStoreOwner();
+    User getUserById(int id);
+    void saveUser(User user);
 }

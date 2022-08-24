@@ -77,4 +77,14 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.getStoreOwner();
     }
 
+    @Override
+    public User getUserById(int id) {
+        return this.userRepository.getUserById(id);
+    }
+
+    @Override
+    public void saveUser(User user) {
+        this.userRepository.saveUser(user);
+    }
+
 }
