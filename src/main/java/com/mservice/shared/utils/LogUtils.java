@@ -1,7 +1,6 @@
 package com.mservice.shared.utils;
 
 import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.Logger;
 
 
@@ -10,7 +9,11 @@ import org.apache.log4j.Logger;
  * @author uyen.tran
  */
 public class LogUtils {
-     static Logger logger;
+    static Logger logger;
+    
+    static {
+        init();
+    }
 
     public static void init(){
         logger = Logger.getLogger(LogUtils.class);
